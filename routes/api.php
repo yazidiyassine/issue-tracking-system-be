@@ -19,5 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/user', function (Request $request) {
-    echo 'tst api';
+    return response() -> json(['success' => true]);
 });
