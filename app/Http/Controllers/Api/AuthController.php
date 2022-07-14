@@ -16,7 +16,7 @@ class AuthController extends Controller
     {
         $passwordGrantClient = Client::where('password_client', 1)->first();
  
-        $data =[
+        $data = [
             'grant_type' => 'password',
             'client_id' => $passwordGrantClient -> id,
             'client_secret' => $passwordGrantClient->secret,
@@ -24,7 +24,9 @@ class AuthController extends Controller
             'password' => $request -> password,
             'scope' => '*',
         ];
-        $tokenRequest = Request::create(uri: '/oauth/token', method: 'post', $data);
+
+        $tokenRequest = Request::create('/oauth/token', 'post', $data);
+
         return app() -> handle($tokenRequest);
     }
     public function register(UserRegisterRequest $request)
